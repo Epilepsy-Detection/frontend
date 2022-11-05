@@ -2,14 +2,14 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<SignUp />} />
-      <Route path="*" /> //TODO: 404 page
+      <Route path="*" />
     </Routes>
   );
-}
+};
 export default App;
