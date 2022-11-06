@@ -2,7 +2,7 @@
   "name": "epilepsy-detection",
   "version": "0.1.0",
   "proxy": "http://localhost:9000",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.16.5",
