@@ -65,7 +65,7 @@ const SignUpForm = () => {
     <section className={styles.form}>
       <h1>Create an Account</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.name}>
           <TextField
             label="First Name"
             placeholder="John"
