@@ -10,7 +10,7 @@ import store from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store} basename={process.env.PUBLIC_URL}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
