@@ -1,0 +1,21 @@
+.hero {
+  padding: 0 20px;
+  width: 40vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(240, 224, 255);
+}
+
+.hero img {
+  max-width: 30vw;
+  align-self: center;
+  display: block;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    display: none;
+  }
+}
