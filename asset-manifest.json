@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Epilepsy-Detection.github.io/frontend/static/css/main.540c9412.css",
-    "main.js": "/Epilepsy-Detection.github.io/frontend/static/js/main.a5228356.js",
+    "main.js": "/Epilepsy-Detection.github.io/frontend/static/js/main.68020f8b.js",
     "static/js/787.5a14d0a1.chunk.js": "/Epilepsy-Detection.github.io/frontend/static/js/787.5a14d0a1.chunk.js",
     "static/media/brain_hero.png": "/Epilepsy-Detection.github.io/frontend/static/media/brain_hero.a812dfa69c7e3034fdfb.png",
     "index.html": "/Epilepsy-Detection.github.io/frontend/index.html",
     "main.540c9412.css.map": "/Epilepsy-Detection.github.io/frontend/static/css/main.540c9412.css.map",
-    "main.a5228356.js.map": "/Epilepsy-Detection.github.io/frontend/static/js/main.a5228356.js.map",
+    "main.68020f8b.js.map": "/Epilepsy-Detection.github.io/frontend/static/js/main.68020f8b.js.map",
     "787.5a14d0a1.chunk.js.map": "/Epilepsy-Detection.github.io/frontend/static/js/787.5a14d0a1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.540c9412.css",
-    "static/js/main.a5228356.js"
+    "static/js/main.68020f8b.js"
   ]
 }
