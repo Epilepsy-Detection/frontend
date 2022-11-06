@@ -20,7 +20,7 @@ const SignInForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(login(email, password))
+    dispatch(login({ email, password }))
       .unwrap()
       .then(() => {
         navigate("/home");
