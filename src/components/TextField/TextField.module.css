@@ -21,3 +21,10 @@
   outline: none;
   border-color: #9a9a9a;
 }
+
+.error {
+  color: red;
+  margin-top: 8px;
+  font-weight: 300;
+  font-size: 0.8em;
+}
