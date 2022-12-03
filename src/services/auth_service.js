@@ -10,8 +10,7 @@ const register = async (email, password, firstName, lastName) => {
     lastName,
   });
 
-  console.log(response.data);
-  localStorage.setItem("user", JSON.stringify(response.data));
+  return response.data;
 };
 
 const login = async (email, password) => {
@@ -20,8 +19,8 @@ const login = async (email, password) => {
     email,
     password,
   });
-  console.log(response.data);
-  localStorage.setItem("user", JSON.stringify(response.data));
+
+  return response.data;
 };
 
 const logout = () => {
