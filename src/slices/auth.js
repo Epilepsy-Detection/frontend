@@ -4,7 +4,7 @@ import { setMessage } from "./message";
 import AuthService from "../services/auth_service";
 import createUserFromJson from "../models/user";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = localStorage.getItem("user");
 
 export const register = createAsyncThunk(
   "auth/register",
