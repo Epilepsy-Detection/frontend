@@ -28,6 +28,7 @@ const SignInForm = () => {
   const navigate = useNavigate();
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [signInError, setSignInError] = useState("");
 
   const dispatch = useDispatch();
 
@@ -41,6 +42,7 @@ const SignInForm = () => {
       })
       .catch((err) => {
         console.log(err);
+        setSignInError(err.message);
         setLoading(false);
       });
   };
@@ -73,6 +75,7 @@ const SignInForm = () => {
           value={rememberMe}
         />
         <Button type="submit">Sign In</Button>
+        <p className={styles.error}>{signInError}</p>
         <SignUp />
       </form>
     </section>

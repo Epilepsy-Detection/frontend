@@ -34,6 +34,7 @@ const SignUpForm = () => {
 
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [signInError, setSignInError] = useState("");
 
   const dispatch = useDispatch();
 
@@ -54,6 +55,7 @@ const SignUpForm = () => {
       })
       .catch((err) => {
         console.log(err);
+        setSignInError(err.message);
         setLoading(false);
       });
   }
@@ -109,6 +111,7 @@ const SignUpForm = () => {
         <Button type="submit" loading={loading}>
           Sign Up
         </Button>
+        <p className={styles.error}>{signInError}</p>
         <Login />
       </form>
     </section>
