@@ -5,6 +5,7 @@ function createUserFromJson(json, email) {
     firstName: json.profile.firstName,
     lastName: json.profile.lastName,
     email: email,
+    token: json.token,
     role: getRoleFromToken(json.token),
     id: json.profile["_id"],
     userId: json.profile["_userId"],

@@ -1,0 +1,60 @@
+.header {
+  background-color: rgb(100, 96, 222);
+  margin: 0;
+  padding: 0;
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.header h1 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}
+
+.header ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.header ul li {
+  margin: 0 0.5rem;
+}
+
+.header ul li a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.header ul li a:hover {
+  text-decoration: underline;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1rem;
+  width: 100%;
+}
+
+.welcome-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.patients-dropdown {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+}
