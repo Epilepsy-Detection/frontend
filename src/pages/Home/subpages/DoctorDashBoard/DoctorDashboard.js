@@ -7,7 +7,7 @@ import styles from "./DoctorDashboard.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../slices/auth";
-import graphOptions from "../../../../utils/graph_options";
+import { intToByte } from "../../../../utils/graph_utils";
 import {
   LineChart,
   Line,
@@ -53,21 +53,19 @@ const DoctorDashboard = () => {
     socket.on("new-patient-message", (data) => {
       console.log("new message");
       setData((prevData) => {
-        console.log(prevData);
         let newData = [...prevData];
         let lastName = prevData[prevData.length - 1]
           ? prevData[prevData.length - 1].name
           : 0;
         let newNames = [lastName];
-        console.log(data);
         let dataArray = new Uint8Array(data);
 
         for (let i = 1; i < data.byteLength; i++) {
           newNames.push(newNames[i - 1] + 1);
-
+          console.log(dataArray[i]);
           newData.push({
             name: newNames[i - 1] + 1,
-            value: dataArray[i],
+            value: intToByte(dataArray[i]),
           });
         }
 
