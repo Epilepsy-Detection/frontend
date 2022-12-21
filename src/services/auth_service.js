@@ -1,9 +1,7 @@
-import axios from "axios";
-
-const API_URL = process.env.REACT_APP_API_URL;
+import instance from "./axios_service";
 
 const register = async (email, password, firstName, lastName) => {
-  const response = await axios.post(API_URL + "register", {
+  const response = await instance.post("/auth/register", {
     email,
     password,
     firstName,
@@ -15,7 +13,7 @@ const register = async (email, password, firstName, lastName) => {
 
 const login = async (email, password) => {
   console.log(email, password);
-  const response = await axios.post(API_URL + "login", {
+  const response = await instance.post("/auth/login", {
     email,
     password,
   });

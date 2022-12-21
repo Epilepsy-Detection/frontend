@@ -6,6 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import styles from "./CreatePatientModal.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import patientService from "../../../../../services/patient_service";
+import { useSelector } from "react-redux";
 
 const CreatePatientModal = ({ show, handleClose }) => {
   const formSchema = Yup.object().shape({
@@ -14,6 +16,8 @@ const CreatePatientModal = ({ show, handleClose }) => {
     email: Yup.string().email().required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
+
+  const token = useSelector((state) => state.auth.user.token);
 
   const formOptions = { resolver: yupResolver(formSchema) };
 
@@ -24,14 +28,28 @@ const CreatePatientModal = ({ show, handleClose }) => {
     formState: { errors },
   } = useForm(formOptions);
 
-  const createUser = () => {};
+  const createUser = (data) => {
+    patientService
+      .createPatient({
+        email: data.email,
+        password: data.password,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        token: token,
+      })
+      .then((res) => {
+        console.log(res);
+        handleClose();
+        alert("Patient created successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        handleClose();
+        alert("An error occurred while creating the patient: " + err.message);
+      });
+  };
   return (
-    <Modal
-      fade={false}
-      show={show}
-      onHide={handleClose}
-      className={styles.modal}
-    >
+    <Modal show={show} onHide={handleClose} className={styles.modal}>
       <Modal.Header className={styles["modal-header"]} closeButton>
         <Modal.Title>Create Patient</Modal.Title>
       </Modal.Header>
