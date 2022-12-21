@@ -16,12 +16,14 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import CreatePatientModal from "./CreatePatientModal/CreatePatientModal";
 
 const DoctorDashboard = () => {
   const user = useSelector((state) => state.auth.user);
   const [isConnected, setIsConnected] = useState(false);
   const [data, setData] = useState([]);
   const [resized, setResized] = useState(false);
+  const [showCreatePatientModal, setShowCreatePatientModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -94,6 +96,14 @@ const DoctorDashboard = () => {
     dispatch(logout());
   };
 
+  const enterCreatePatientModal = () => {
+    setShowCreatePatientModal(true);
+  };
+
+  const exitCreatePatientModal = () => {
+    setShowCreatePatientModal(false);
+  };
+
   const options = ["one", "two", "three"];
   const defaultOption = options[0];
 
@@ -103,7 +113,7 @@ const DoctorDashboard = () => {
         <h1>Doctor Dashboard</h1>
         <ul>
           <li>
-            <a href="/">Create Patient</a>
+            <button onClick={enterCreatePatientModal}>Create Patient</button>
           </li>
           <li>
             <Link to="/login" onClick={logoutHandler}>
@@ -140,6 +150,10 @@ const DoctorDashboard = () => {
             yAxisId={0}
           />
         </LineChart>
+        <CreatePatientModal
+          show={showCreatePatientModal}
+          handleClose={exitCreatePatientModal}
+        />
       </main>
     </>
   );
