@@ -1,0 +1,14 @@
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 25%;
+  background-color: #fff;
+  width: 50%;
+  padding: 20px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
