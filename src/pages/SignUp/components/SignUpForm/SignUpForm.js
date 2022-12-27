@@ -50,11 +50,10 @@ const SignUpForm = () => {
     )
       .unwrap()
       .then(() => {
-        navigate("/home");
+        navigate("/home", { replace: true });
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
         setSignInError(err.message);
         setLoading(false);
       });

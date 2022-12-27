@@ -17,6 +17,11 @@
   padding: 0;
 }
 
+.header h1 a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
 .header ul {
   display: flex;
   justify-content: space-around;

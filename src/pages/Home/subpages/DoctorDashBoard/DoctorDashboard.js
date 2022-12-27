@@ -57,7 +57,6 @@ const DoctorDashboard = () => {
 
         for (let i = 1; i < data.byteLength; i++) {
           newNames.push(newNames[i - 1] + 1);
-          console.log(dataArray[i]);
           newData.push({
             name: newNames[i - 1] + 1,
             value: intToByte(dataArray[i]),
