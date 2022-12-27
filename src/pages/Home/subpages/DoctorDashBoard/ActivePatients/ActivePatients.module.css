@@ -1,0 +1,12 @@
+.patients-dropdown {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.upload-file-button {
+  width: initial;
+  font-size: 1em;
+  padding: 0 2em;
+  font-weight: 500;
+}
