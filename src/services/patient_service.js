@@ -25,7 +25,6 @@ const createPatient = async ({
 };
 
 const getDoctorPatients = async (token, doctorProfileId) => {
-  console.log("token: ", token);
   const response = await instance.get(`/profile/associatedPatients`, {
     headers: {
       Authorization: `Bearer ${token}`,
