@@ -37,11 +37,10 @@ const SignInForm = () => {
     dispatch(login({ email: data.email, password: data.password }))
       .unwrap()
       .then(() => {
-        navigate("/home");
+        navigate("/home", { replace: true });
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
         setSignInError(err.message);
         setLoading(false);
       });

@@ -12,7 +12,6 @@ const register = async (email, password, firstName, lastName) => {
 };
 
 const login = async (email, password) => {
-  console.log(email, password);
   const response = await instance.post("/auth/login", {
     email,
     password,

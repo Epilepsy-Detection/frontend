@@ -17,7 +17,9 @@ const CreatePatientModal = ({ show, handleClose }) => {
     password: Yup.string().required("Password is required"),
   });
 
-  const token = useSelector((state) => state.auth.user.token);
+  const token = useSelector(
+    (state) => state.auth.user && state.auth.user.token
+  );
 
   const formOptions = { resolver: yupResolver(formSchema) };
 
@@ -38,12 +40,10 @@ const CreatePatientModal = ({ show, handleClose }) => {
         token: token,
       })
       .then((res) => {
-        console.log(res);
         handleClose();
         alert("Patient created successfully");
       })
       .catch((err) => {
-        console.log(err);
         handleClose();
         alert("An error occurred while creating the patient: " + err.message);
       });

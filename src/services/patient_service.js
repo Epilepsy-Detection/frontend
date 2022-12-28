@@ -24,8 +24,21 @@ const createPatient = async ({
   return response.data;
 };
 
+const getDoctorPatients = async (token, doctorProfileId) => {
+  const response = await instance.get(`/profile/associatedPatients`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    params: {
+      profileId: doctorProfileId,
+    },
+  });
+  return response.data;
+};
+
 const patientService = {
   createPatient,
+  getDoctorPatients,
 };
 
 export default patientService;
