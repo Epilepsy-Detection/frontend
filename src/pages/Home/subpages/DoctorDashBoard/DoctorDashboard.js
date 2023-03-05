@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { io } from "socket.io-client";
 import styles from "./DoctorDashboard.module.css";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logout } from "../../../../slices/auth";
 import { intToByte } from "../../../../utils/graph_utils";
 import {
   LineChart,
@@ -16,16 +12,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import CreatePatientModal from "./CreatePatientModal/CreatePatientModal";
+import ActivePatients from "./ActivePatients/ActivePatients";
 
 const DoctorDashboard = () => {
   const user = useSelector((state) => state.auth.user);
   const [isConnected, setIsConnected] = useState(false);
   const [data, setData] = useState([]);
   const [resized, setResized] = useState(false);
-  const [showCreatePatientModal, setShowCreatePatientModal] = useState(false);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const socket = io(process.env.REACT_APP_SOCKET_URL, {
@@ -64,7 +57,6 @@ const DoctorDashboard = () => {
 
         for (let i = 1; i < data.byteLength; i++) {
           newNames.push(newNames[i - 1] + 1);
-          console.log(dataArray[i]);
           newData.push({
             name: newNames[i - 1] + 1,
             value: intToByte(dataArray[i]),
@@ -92,46 +84,11 @@ const DoctorDashboard = () => {
     };
   }, []);
 
-  const logoutHandler = () => {
-    dispatch(logout());
-  };
-
-  const enterCreatePatientModal = () => {
-    setShowCreatePatientModal(true);
-  };
-
-  const exitCreatePatientModal = () => {
-    setShowCreatePatientModal(false);
-  };
-
-  const options = ["one", "two", "three"];
-  const defaultOption = options[0];
-
   return (
     <>
-      <header className={styles.header}>
-        <h1>Doctor Dashboard</h1>
-        <ul>
-          <li>
-            <button onClick={enterCreatePatientModal}>Create Patient</button>
-          </li>
-          <li>
-            <Link to="/login" onClick={logoutHandler}>
-              Log out
-            </Link>
-          </li>
-        </ul>
-      </header>
       <main className={styles.main}>
         <h1 className={styles["welcome-text"]}>Welcome Dr. {user.firstName}</h1>
-        <div className={styles["patients-dropdown"]}>
-          <p>Select Active Patient:</p>
-          <Dropdown
-            options={options}
-            value={defaultOption}
-            placeholder="Select an option"
-          />
-        </div>
+        <ActivePatients />
         <LineChart
           width={window.innerWidth - 100}
           height={400}
@@ -150,10 +107,6 @@ const DoctorDashboard = () => {
             yAxisId={0}
           />
         </LineChart>
-        <CreatePatientModal
-          show={showCreatePatientModal}
-          handleClose={exitCreatePatientModal}
-        />
       </main>
     </>
   );
