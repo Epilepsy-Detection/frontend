@@ -1,0 +1,57 @@
+.background {
+  background: #f2efff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 80px;
+  border-bottom: 1px solid #8a73ff;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+}
+
+.welcome h1 {
+  letter-spacing: -0.03em;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  color: #6e5cdc;
+}
+
+.profile {
+  border: 2px solid #fea8db;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reports-table {
+  width: 95vw;
+  height: 85vh;
+  margin: 20px auto;
+  background: #fdfdfd;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.25),
+    inset 2px -2px 5px rgba(255, 255, 255, 0.2);
+  border-radius: 46px;
+  font-family: "Nunito";
+  padding: 20px;
+}
+
+.reports-number {
+  color: #8a73ff;
+}
