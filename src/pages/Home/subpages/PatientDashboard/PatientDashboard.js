@@ -8,6 +8,14 @@ const PatientDashboard = () => {
     const dropdown = document.querySelector(`.${styles.dropdown}`);
     dropdown.classList.toggle(styles["hide"]);
   };
+
+  const hideDropdown = () => {
+    const dropdown = document.querySelector(`.${styles.dropdown}`);
+    if (!dropdown.classList.contains(styles["hide"])) {
+      dropdown.classList.add(styles["hide"]);
+    }
+  };
+
   return (
     <div className={styles.background}>
       <header className={styles.header}>
@@ -24,7 +32,7 @@ const PatientDashboard = () => {
           <a href="#">Logout</a>
         </div>
       </header>
-      <main className={styles["reports-table"]}>
+      <main className={styles["reports-table"]} onClick={hideDropdown}>
         <h1>All Reports</h1>
         <h4>
           Total Reports:{" "}
