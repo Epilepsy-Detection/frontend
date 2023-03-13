@@ -2,8 +2,17 @@ import styles from "./PatientDashboard.module.css";
 import logo from "../../../../assets/logo.png";
 import { BsPersonFill } from "react-icons/bs";
 import ReportsTable from "./components/ReportsTable";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../../slices/auth";
+import { Link } from "react-router-dom";
 
 const PatientDashboard = () => {
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   const showDropdown = () => {
     const dropdown = document.querySelector(`.${styles.dropdown}`);
     dropdown.classList.toggle(styles["hide"]);
@@ -29,7 +38,9 @@ const PatientDashboard = () => {
         <div className={styles.dropdown + " " + styles.hide}>
           <a href="#">Edit Profile</a>
           <a href="#">Emergency Contacts</a>
-          <a href="#">Logout</a>
+          <Link to="/login" onClick={logoutHandler}>
+            Logout
+          </Link>
         </div>
       </header>
       <main className={styles["reports-table"]} onClick={hideDropdown}>
