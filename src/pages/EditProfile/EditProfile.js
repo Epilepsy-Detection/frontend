@@ -5,8 +5,25 @@ import TextField from "../../components/TextField/TextField";
 import { hideDropdown } from "../../utils/ui_functions";
 import patientStyles from "../Home/subpages/PatientDashboard/PatientDashboard.module.css";
 import styles from "./EditProfile.module.css";
+import { useSelector } from "react-redux";
+import { useRef } from "react";
+import useEditProfile from "./hooks/use-edit-profile";
 
 const EditProfile = () => {
+  const fileInput = useRef(null);
+  const { changeIcon } = useEditProfile();
+
+  const handleFileChange = (e) => {
+    const newPicture = e.target.files[0];
+    changeIcon(newPicture);
+  };
+
+  const handleIconChange = (e) => {
+    e.preventDefault();
+    fileInput.current.click();
+  };
+
+  const user = useSelector((state) => state.auth.user);
   return (
     <div className={patientStyles.background}>
       <PatientHeader />
@@ -17,7 +34,20 @@ const EditProfile = () => {
             <div className={styles.pfp}>
               <BsPersonFill size={100} />
             </div>
-            <button className={styles["change-pfp-btn"]}>Edit Icon</button>
+            <input
+              style={{ display: "none" }}
+              ref={fileInput}
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+            <button
+              type="file"
+              className={styles["change-pfp-btn"]}
+              onClick={handleIconChange}
+            >
+              Edit Icon
+            </button>
             <button className={styles["change-pfp-btn"]}>Remove Icon</button>
           </div>
           <div className={styles.separator}></div>
@@ -26,20 +56,20 @@ const EditProfile = () => {
               <TextField
                 label="First Name"
                 type="text"
-                placeholder="John"
+                placeholder={user.firstName}
                 readOnly
               />
               <TextField
                 label="Last Name"
                 type="text"
-                placeholder="Doe"
+                placeholder={user.lastName}
                 readOnly
               />
             </div>
             <TextField
               label="Email"
               type="email"
-              placeholder="johndoe@gmail.com"
+              placeholder={user.email}
               readOnly
             />
             <TextField
