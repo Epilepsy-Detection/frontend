@@ -48,3 +48,14 @@
 .dropdown a:hover {
   background-color: #f1f1f1;
 }
+
+.profile {
+  border: 2px solid #fea8db;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

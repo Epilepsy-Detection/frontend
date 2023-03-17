@@ -27,7 +27,7 @@ const PatientHeader = () => {
         <BsPersonFill size={40} color="#fea8db" />
       </div>
       <div className={styles.dropdown + " " + styles.hide}>
-        <Link to="edit-profile">Edit Profile</Link>
+        <Link to="/home/edit-profile">Edit Profile</Link>
         <Link to="/home/edit-profile">Emergency Contacts</Link>
         <Link to="/login" onClick={logoutHandler}>
           Logout

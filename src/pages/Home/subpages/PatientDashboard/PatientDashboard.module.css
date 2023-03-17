@@ -7,17 +7,6 @@
   left: 0;
 }
 
-.profile {
-  border: 2px solid #fea8db;
-  cursor: pointer;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .main-bg {
   width: 95vw;
   height: 85vh;
