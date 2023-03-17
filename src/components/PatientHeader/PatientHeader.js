@@ -4,12 +4,18 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../slices/auth";
 import logo from "../../assets/logo.png";
 import { BsPersonFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const PatientHeader = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logoutHandler = () => {
     dispatch(logout());
+  };
+
+  const navigateHome = () => {
+    navigate("/home");
   };
 
   const showDropdown = () => {
@@ -20,7 +26,7 @@ const PatientHeader = () => {
   return (
     <header className={styles.header}>
       <div className={styles.welcome}>
-        <img alt="Logo" src={logo}></img>
+        <img alt="Logo" src={logo} onClick={navigateHome}></img>
         <h1>Hello, Ahmed</h1>
       </div>
       <div className={styles.profile} onClick={showDropdown}>
