@@ -48,11 +48,20 @@ const changeProfilePicture = async (token, picture) => {
       });
       return response.data;
   }
+  const getEmergencyContacts = async (token) => {
+    const response = await instance.get(`/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.profile.emergencyContact;
+  };
 
 const patientService = {
   createPatient,
   getDoctorPatients,
-  changeProfilePicture
+  changeProfilePicture,
+  getEmergencyContacts
 };
 
 export default patientService;

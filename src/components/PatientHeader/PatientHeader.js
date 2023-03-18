@@ -34,7 +34,7 @@ const PatientHeader = () => {
       </div>
       <div className={styles.dropdown + " " + styles.hide}>
         <Link to="/home/edit-profile">Edit Profile</Link>
-        <Link to="/home/edit-profile">Emergency Contacts</Link>
+        <Link to="/home/emergency-contacts">Emergency Contacts</Link>
         <Link to="/login" onClick={logoutHandler}>
           Logout
         </Link>
