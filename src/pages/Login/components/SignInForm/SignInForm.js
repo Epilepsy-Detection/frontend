@@ -21,7 +21,6 @@ const SignInForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm(formOptions);
 

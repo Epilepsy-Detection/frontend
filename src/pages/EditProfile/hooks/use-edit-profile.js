@@ -1,5 +1,6 @@
 import { useState } from "react";
 import patientService from "../../../services/patient_service";
+import authService from "../../../services/auth_service";
 import { useSelector } from "react-redux";
 
 function useEditProfile() {
@@ -22,7 +23,21 @@ function useEditProfile() {
     }
   }
 
-  return { isLoading, error, changeIcon };
+  async function changePassword(oldPassword, newPassword) {
+    setIsLoading(true);
+    setError(null);
+    try {
+      await authService.changePassword(token, oldPassword, newPassword);
+      setIsLoading(false);
+      alert("Password changed successfully");
+    } catch (err) {
+      console.log(err);
+      setError(err.message);
+      setIsLoading(false);
+    }
+  }
+
+  return { isLoading, error, changeIcon, changePassword };
 }
 
 export default useEditProfile;
