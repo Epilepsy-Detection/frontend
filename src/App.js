@@ -8,6 +8,7 @@ import DoctorHeader from "./components/DoctorHeader/DoctorHeader";
 import { useDispatch } from "react-redux";
 import { logout } from "./slices/auth";
 import CreatePatientModal from "./pages/Home/subpages/DoctorDashBoard/CreatePatientModal/CreatePatientModal";
+import EditProfile from "./pages/EditProfile/EditProfile";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const App = () => {
         <Route exact path="home">
           <Route index element={<Home />} />
           <Route exact path="upload-EEG" element={<UploadEEG />} />
+          <Route path="edit-profile" element={<EditProfile />} />
         </Route>
         <Route path="*" />
       </Routes>

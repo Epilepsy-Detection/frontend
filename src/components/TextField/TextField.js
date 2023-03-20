@@ -1,6 +1,14 @@
 import styles from "./TextField.module.css";
 
-const TextField = ({ label, onChange, type, placeholder, register, error }) => {
+const TextField = ({
+  label,
+  onChange,
+  type,
+  placeholder,
+  register,
+  error,
+  readOnly,
+}) => {
   return (
     <div className={styles.container}>
       <label className={styles.label}>{label}</label>
@@ -11,6 +19,7 @@ const TextField = ({ label, onChange, type, placeholder, register, error }) => {
         onChange={onChange}
         {...register}
         aria-invalid={register?.ref?.current?.validity?.valid}
+        readOnly={readOnly ? true : false}
       />
       {error && <p className={styles.error}>{error}</p>}
     </div>

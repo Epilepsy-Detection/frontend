@@ -7,41 +7,7 @@
   left: 0;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  height: 80px;
-  border-bottom: 1px solid #8a73ff;
-}
-
-.welcome {
-  display: flex;
-  align-items: center;
-}
-
-.welcome h1 {
-  letter-spacing: -0.03em;
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  color: #6e5cdc;
-}
-
-.profile {
-  border: 2px solid #fea8db;
-  cursor: pointer;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.reports-table {
+.main-bg {
   width: 95vw;
   height: 85vh;
   margin: 20px auto;
@@ -55,32 +21,4 @@
 
 .reports-number {
   color: #8a73ff;
-}
-
-.dropdown {
-  display: block;
-  position: absolute;
-  background-color: #f9f9f9;
-  border: 1px solid #cfcfcf;
-  cursor: pointer;
-  font-size: 16px;
-  top: 70px;
-  right: 20px;
-}
-
-.hide {
-  display: none;
-}
-
-.dropdown a {
-  display: block;
-  padding: 12px 16px;
-  text-decoration: none;
-  cursor: pointer;
-  color: black;
-  border: 1px solid #cfcfcf;
-}
-
-.dropdown a:hover {
-  background-color: #f1f1f1;
 }
