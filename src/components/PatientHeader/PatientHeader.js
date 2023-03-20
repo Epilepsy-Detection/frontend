@@ -5,10 +5,12 @@ import { logout } from "../../slices/auth";
 import logo from "../../assets/logo.png";
 import { BsPersonFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const PatientHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -27,7 +29,7 @@ const PatientHeader = () => {
     <header className={styles.header}>
       <div className={styles.welcome}>
         <img alt="Logo" src={logo} onClick={navigateHome}></img>
-        <h1>Hello, Ahmed</h1>
+        <h1>Hello, {user.firstName}</h1>
       </div>
       <div className={styles.profile} onClick={showDropdown}>
         <BsPersonFill size={40} color="#fea8db" />

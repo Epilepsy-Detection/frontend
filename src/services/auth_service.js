@@ -28,25 +28,32 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
-const changePassword = async (token, oldPassword, newPassword) => { 
-  const response = await instance.put(`/auth/password`, {
-    oldPassword,
-    newPassword,
-  }, {
-    headers: {
-      Authorization: `Bearer ${token}`,
+const changePassword = async (token, oldPassword, newPassword) => {
+  const response = await instance.put(
+    `/auth/password`,
+    {
+      oldPassword,
+      newPassword,
     },
-  });
-  return response.data;
-}
-
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (response.status === 200) {
+    return response.data;
+  } else {
+    throw new Error("Could not change password");
+  }
+};
 
 const authService = {
   register,
   login,
   logout,
   getCurrentUser,
-  changePassword
+  changePassword,
 };
 
 export default authService;
