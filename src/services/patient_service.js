@@ -37,17 +37,22 @@ const getDoctorPatients = async (token, doctorProfileId) => {
 };
 
 const changeProfilePicture = async (token, picture) => {
-  const formData = new FormData();
-  formData.append('profilePicture', picture);
+  let formData = new FormData();
+  formData.append("image", picture);
 
-  const response = await instance.put(`/profile/picture`, formData, {
-         headers: {
-            'Content-Type': 'multipart/form-data',
-            'Authorization': `Bearer ${token}`,
-         },
-      });
-      return response.data;
+  const response = await instance.post(`/profile/picture`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (response.status === 204 || response.status === 200) {
+    return response.data;
+  } else {
+    throw new Error(response.error.message);
   }
+};
+
   const getEmergencyContacts = async (token) => {
     const response = await instance.get(`/profile`, {
       headers: {
