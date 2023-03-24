@@ -25,4 +25,9 @@
     width: 100px;
     align-self: flex-end;
   }
+
+  .message {
+    margin-top: 1vh;
+    width: 100%;
+  }
   

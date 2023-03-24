@@ -20,17 +20,25 @@ const AddEmergencyContact = () => {
     console.log(phone);
     e.preventDefault();
     try {
+      if (name === "" || phone === "") {
+        setMessage("Please fill all the fields");
+        return;
+      }
       const res = await patientService.addEmergencyContact(name, phone,user.token);
       console.log(res);
       if (res.status === 200) {
         setName("");
         setPhone("");
         setMessage("Contact added successfully");
-      } else {
-        setMessage("Error Adding Contact");
+      }
+      else{
+        setMessage("Something went wrong");
       }
     } catch (err) {
       console.log(err);
+      if (err.response.status === 400){
+        setMessage("You are allowed to only create 2 emergency contacts");
+      }
     }
   };
 

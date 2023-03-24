@@ -73,7 +73,7 @@ const changeProfilePicture = async (token, picture) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
+    console.log(response.status);
     return response;
   };
 
