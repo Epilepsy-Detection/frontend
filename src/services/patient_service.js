@@ -62,11 +62,28 @@ const changeProfilePicture = async (token, picture) => {
     return response.data.profile.emergencyContact;
   };
 
+  const addEmergencyContact = async (name, phone, token) => {
+    console.log(name);
+    console.log(phone);
+    const response = await instance.post("/patient/emergencyContact", {
+      "name": name,
+      "phone": phone
+    },{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response);
+    return response;
+  };
+
 const patientService = {
   createPatient,
   getDoctorPatients,
   changeProfilePicture,
-  getEmergencyContacts
+  getEmergencyContacts,
+  addEmergencyContact
+
 };
 
 export default patientService;

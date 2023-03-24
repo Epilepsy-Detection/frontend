@@ -28,7 +28,8 @@ const useEmergencyContacts = (user) => {
             setLoading(false);
         }
         };
-        fetchContacts();
+
+        fetchContacts();        
     }, [user.token]);
     
     return { contacts, loading, error };

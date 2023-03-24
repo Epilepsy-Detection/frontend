@@ -1,34 +1,64 @@
-import { BsPersonFill } from "react-icons/bs";
 import Button from "../../components/Button/Button";
 import PatientHeader from "../../components/PatientHeader/PatientHeader";
 import TextField from "../../components/TextField/TextField";
 import { hideDropdown } from "../../utils/ui_functions";
 import patientStyles from "../Home/subpages/PatientDashboard/PatientDashboard.module.css";
 import styles from "./AddEmergencyContact.module.css";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import patientService from "../../services/patient_service";
 
 const AddEmergencyContact = () => {
+  const user = useSelector((state) => state.auth.user);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+
+  let handleSubmit = async (e) => {
+    console.log(name);
+    console.log(phone);
+    e.preventDefault();
+    try {
+      const res = await patientService.addEmergencyContact(name, phone,user.token);
+      console.log(res);
+      if (res.status === 200) {
+        setName("");
+        setPhone("");
+        setMessage("Contact added successfully");
+      } else {
+        setMessage("Error Adding Contact");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className={patientStyles.background}>
       <PatientHeader />
       <main className={patientStyles["main-bg"]} onClick={hideDropdown}>
         <h1>Add Emergency Contact</h1>
-        <form className={styles["add-emergency-contact-form "]}>
+        <form className={styles["add-emergency-contact-form "]} onSubmit={handleSubmit}>
           <div className={styles["contact-details"]}>
             <div className={styles.name}>
               <TextField
-                label="Name"
-                type="text"
-                placeholder="John doe"
+                ltype="text"
+                value={name}
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
                 // readOnly
               />
               <TextField
-                label="Phone Number"
                 type="phone"
-                placeholder="+1 123 456 7890"
+                value={phone}
+                placeholder="Phone"
+                onChange={(e) => setPhone(e.target.value)}
                 // readOnly
               />
             </div>
-            <Button className={styles.add}>Add</Button>
+            <Button className={styles.add} type = "submit">Add</Button>
+            <div className="message">{message ? <p>{message}</p> : null}</div>
           </div>
         </form>
       </main>
