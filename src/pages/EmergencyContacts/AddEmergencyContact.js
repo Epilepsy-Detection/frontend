@@ -13,6 +13,27 @@ const AddEmergencyContact = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [nameIsValid, setNameIsValid] = useState(true);
+  const [phoneIsValid, setPhoneIsValid] = useState(true);
+
+
+  const validateInput = (value) => {
+    const regex = /^[a-zA-Z\s]*$/;
+    return regex.test(value);
+  };
+  const validatePhone= (inputPhone) => {
+    const phonePattern = /^(\+|\d)[0-9]{7,16}$/;
+    return phonePattern.test(inputPhone);
+  };
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+    setNameIsValid(validateInput(event.target.value));
+  };
+  const handlePhoneChange = (event) => {
+    setPhone(event.target.value);
+    setPhoneIsValid(validatePhone(event.target.value));
+  };
+
 
 
   let handleSubmit = async (e) => {
@@ -20,10 +41,19 @@ const AddEmergencyContact = () => {
     console.log(phone);
     e.preventDefault();
     try {
+      if(!nameIsValid || name.length > 50){
+        setMessage("Please enter a valid name");
+        return;
+      }
+      if(!phoneIsValid){
+        setMessage("Please enter a valid phone number");
+        return;
+      }
       if (name === "" || phone === "") {
         setMessage("Please fill all the fields");
         return;
       }
+
       const res = await patientService.addEmergencyContact(name, phone,user.token);
       console.log(res);
       if (res.status === 200) {
@@ -51,18 +81,18 @@ const AddEmergencyContact = () => {
           <div className={styles["contact-details"]}>
             <div className={styles.name}>
               <TextField
-                ltype="text"
+                type="text"
                 value={name}
                 placeholder="Name"
-                onChange={(e) => setName(e.target.value)}
-                // readOnly
+                onChange={handleNameChange}
+                required
               />
               <TextField
                 type="phone"
                 value={phone}
                 placeholder="Phone"
-                onChange={(e) => setPhone(e.target.value)}
-                // readOnly
+                onChange={handlePhoneChange}
+                required
               />
             </div>
             <Button className={styles.add} type = "submit">Add</Button>
