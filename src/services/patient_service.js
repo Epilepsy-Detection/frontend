@@ -53,10 +53,37 @@ const changeProfilePicture = async (token, picture) => {
   }
 };
 
+  const getEmergencyContacts = async (token) => {
+    const response = await instance.get(`/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.profile.emergencyContact;
+  };
+
+  const addEmergencyContact = async (name, phone, token) => {
+    console.log(name);
+    console.log(phone);
+    const response = await instance.post("/patient/emergencyContact", {
+      "name": name,
+      "phone": phone
+    },{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.status);
+    return response;
+  };
+
 const patientService = {
   createPatient,
   getDoctorPatients,
   changeProfilePicture,
+  getEmergencyContacts,
+  addEmergencyContact
+
 };
 
 export default patientService;

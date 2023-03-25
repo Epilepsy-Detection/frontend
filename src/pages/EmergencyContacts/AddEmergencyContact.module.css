@@ -1,0 +1,33 @@
+.add-emergency-contact-form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  .contact-details {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 100%;
+    padding-top: 10vh;
+  }
+  
+  .name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .name div {
+    width: 24vw;
+  }
+  .add {
+    margin-top: 1vh;
+    width: 100px;
+    align-self: flex-end;
+  }
+
+  .message {
+    margin-top: 1vh;
+    width: 100%;
+  }
+  
