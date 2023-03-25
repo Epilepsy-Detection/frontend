@@ -2,54 +2,26 @@ import { useMemo } from "react";
 import { useTable } from "react-table";
 import styles from "./ReportsTable.module.css";
 
-const ReportsTable = () => {
+const ReportsTable = ({ reports }) => {
   const columns = useMemo(
     () => [
       {
-        Header: "Report",
-        accessor: "report.name",
+        header: "ID",
+        accessor: "_id",
       },
       {
-        Header: "Date",
-        accessor: "report.date",
+        Header: "Prediction",
+        accessor: "prediction.label",
       },
       {
-        Header: "Actions",
-        accessor: "report.id",
-        Cell: ({ cell: { value } }) => (
-          <div>
-            <button
-              className={styles["view-btn"]}
-              onClick={() => console.log(value)}
-            >
-              View
-            </button>
-          </div>
-        ),
+        Header: "Confidence",
+        accessor: "prediction.confidence",
       },
     ],
     []
   );
 
-  const data = useMemo(
-    () => [
-      {
-        report: {
-          name: "Report 1",
-          date: "2021-01-01",
-          id: 1,
-        },
-      },
-      {
-        report: {
-          name: "Report 2",
-          date: "2021-01-02",
-          id: 2,
-        },
-      },
-    ],
-    []
-  );
+  const data = useMemo(() => reports, [reports]);
 
   const {
     getTableProps, // table props from react-table
