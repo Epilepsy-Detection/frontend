@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 const ContactsTable = () => {
   const user = useSelector((state) => state.auth.user);
   const { contacts, loading, error: fetchError } = useEmergencyContacts(user);
+  // const contacts = user.emergencyContacts;
   const columns = useMemo(
     () => [
       {

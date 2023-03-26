@@ -41,6 +41,10 @@ const AddEmergencyContact = () => {
     console.log(phone);
     e.preventDefault();
     try {
+      if (name === "" || phone === "") {
+        setMessage("Please fill all the fields");
+        return;
+      }
       if(!nameIsValid || name.length > 50){
         setMessage("Please enter a valid name");
         return;
@@ -49,17 +53,14 @@ const AddEmergencyContact = () => {
         setMessage("Please enter a valid phone number");
         return;
       }
-      if (name === "" || phone === "") {
-        setMessage("Please fill all the fields");
-        return;
-      }
+      
 
       const res = await patientService.addEmergencyContact(name, phone,user.token);
       console.log(res);
       if (res.status === 200) {
         setName("");
         setPhone("");
-        setMessage("Contact added successfully");
+        alert("Contact added successfully");
       }
       else{
         setMessage("Something went wrong");

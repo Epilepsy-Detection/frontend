@@ -11,6 +11,7 @@ import CreatePatientModal from "./pages/Home/subpages/DoctorDashBoard/CreatePati
 import EditProfile from "./pages/EditProfile/EditProfile";
 import EmergencyContacts from "./pages/EmergencyContacts/EmergencyContacts";
 import AddEmergencyContact from "./pages/EmergencyContacts/AddEmergencyContact";
+import DeleteEmergencyContact from "./pages/EmergencyContacts/DeleteEmergencyContact";
 
 
 
@@ -47,6 +48,7 @@ const App = () => {
           <Route exact path="emergency-contacts">
             <Route index element={<EmergencyContacts />} />
             <Route path="add-emergency-contact" element={<AddEmergencyContact />} /> 
+            <Route path="delete-emergency-contact" element={<DeleteEmergencyContact />} />
           </Route>   
         </Route>
         <Route path="*" />

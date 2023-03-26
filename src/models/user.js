@@ -9,6 +9,7 @@ function createUserFromJson(json, email) {
     role: getRoleFromToken(json.token),
     id: json.profile["_id"],
     userId: json.profile["_userId"],
+    emergencyContacts: json.profile.emergencyContact,
   };
 }
 
