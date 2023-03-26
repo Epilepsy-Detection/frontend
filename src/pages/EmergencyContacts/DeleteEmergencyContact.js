@@ -28,11 +28,21 @@ const DeleteEmergencyContact = ()=> {
 
   const handleDelete = async () => {
     console.log(selectedOption);
-    const res = await patientService.deleteEmergencyContact(selectedOption.value, user.token);
-    console.log(res);
-    if (res.status === 200) {
+    if (selectedOption.length === 0) {
+      alert("Please select a contact to delete");
+      return;
+    }
+    if (selectedOption.length > 1) {
+      alert("Please select only one contact to delete");
+      return;
+    }
+    if (selectedOption.length === 1) {
+      const res = await patientService.deleteEmergencyContact(selectedOption.value, user.token);
+      console.log(res);
+      if (res.status === 200) {
         setSelectedOption([]);
         alert("Contact deleted successfully");
+      }
     }
     };
 
