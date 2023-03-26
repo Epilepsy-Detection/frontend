@@ -36,7 +36,7 @@ const DeleteEmergencyContact = ()=> {
       alert("Please select only one contact to delete");
       return;
     }
-    if (selectedOption.length === 1) {
+    if (selectedOption) {
       const res = await patientService.deleteEmergencyContact(selectedOption.value, user.token);
       console.log(res);
       if (res.status === 200) {
