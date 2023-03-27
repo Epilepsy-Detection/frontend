@@ -11,12 +11,24 @@ const ContactsTable = () => {
   const columns = useMemo(
     () => [
       {
-        Header: "Name",
         accessor: "contact.name",
+        Header: () => (
+          <div
+            style={{
+              textAlign:"center"
+            }}
+          >Name</div>),
+          Cell: row => <div style={{ textAlign: "center" }}>{row.value}</div>
       },
       {
-        Header: "Phone",
         accessor: "contact.phone",
+        Header: () => (
+          <div
+            style={{
+              textAlign:"center"
+            }}
+          >Phone</div>),
+          Cell: row => <div style={{ textAlign: "center" }}>{row.value}</div>
       }
     ],
     []

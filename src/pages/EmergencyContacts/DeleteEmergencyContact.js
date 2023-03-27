@@ -5,7 +5,7 @@ import patientStyles from "../Home/subpages/PatientDashboard/PatientDashboard.mo
 import PatientHeader from "../../components/PatientHeader/PatientHeader";
 import { hideDropdown } from "../../utils/ui_functions";
 import { useSelector } from "react-redux";
-import Button from "../../components/Button/Button";
+import DeleteButton from "../../components/Delete Button/DeleteButton";
 import styles from "./deleteEmergencyContact.module.css";
 import patientService from "../../services/patient_service";
 import useEmergencyContacts from "./Hooks/use-emergency-contacts";
@@ -68,15 +68,17 @@ const DeleteEmergencyContact = ()=> {
     <PatientHeader />
       <main className={patientStyles["main-bg"]} onClick={hideDropdown}>
         <h1>Delete Emergency Contact</h1>
-        <Select
-            value={selectedOption}
-            onChange={handleChange}
-            options={options}
-            hideSelectedOptions={false}
-            isSearchable
-            filterOption={filterOptions}
-        />
-        <Button className={styles.add} onClick={handleDelete} >Delete</Button>
+        <div className={styles["delete-contact"]}>
+          <Select
+              value={selectedOption}
+              onChange={handleChange}
+              options={options}
+              hideSelectedOptions={false}
+              isSearchable
+              filterOption={filterOptions}
+          />
+          <DeleteButton className={styles.add} onClick={handleDelete} >Delete</DeleteButton>
+        </div>
         </main>
     </div>
   );
