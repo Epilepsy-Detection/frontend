@@ -7,14 +7,17 @@ import styles from "./AddEmergencyContact.module.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import patientService from "../../services/patient_service";
+import { useRef } from "react";
 
 const AddEmergencyContact = () => {
   const user = useSelector((state) => state.auth.user);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
   const [nameIsValid, setNameIsValid] = useState(true);
   const [phoneIsValid, setPhoneIsValid] = useState(true);
+  const [nameError, setNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const formRef = useRef(null);
 
 
   const validateInput = (value) => {
@@ -42,15 +45,16 @@ const AddEmergencyContact = () => {
     e.preventDefault();
     try {
       if (name === "" || phone === "") {
-        setMessage("Please fill all the fields");
+        setNameError("name is required");
+        setPhoneError("phone is required");
         return;
       }
       if(!nameIsValid || name.length > 50){
-        setMessage("Please enter a valid name");
+        setNameError("Please enter a valid name");
         return;
       }
       if(!phoneIsValid){
-        setMessage("Please enter a valid phone number");
+        setPhoneError("Please enter a valid phone number");
         return;
       }
       
@@ -58,17 +62,20 @@ const AddEmergencyContact = () => {
       const res = await patientService.addEmergencyContact(name, phone,user.token);
       console.log(res);
       if (res.status === 200) {
+        alert("Contact added successfully");
+        formRef.current.reset();
+        setNameError("");
+        setPhoneError("");
         setName("");
         setPhone("");
-        alert("Contact added successfully");
       }
       else{
-        setMessage("Something went wrong");
+        alert("Something went wrong");
       }
     } catch (err) {
       console.log(err);
       if (err.response.status === 400){
-        setMessage("You are allowed to only create 2 emergency contacts");
+        alert("You are allowed to only create 2 emergency contacts");
       }
     }
   };
@@ -78,7 +85,7 @@ const AddEmergencyContact = () => {
       <PatientHeader />
       <main className={patientStyles["main-bg"]} onClick={hideDropdown}>
         <h1>Add Emergency Contact</h1>
-        <form className={styles["add-emergency-contact-form "]} onSubmit={handleSubmit}>
+        <form className={styles["add-emergency-contact-form "]} onSubmit={handleSubmit} ref={formRef}>
           <div className={styles["contact-details"]}>
             <div className={styles.name}>
               <TextField
@@ -87,6 +94,7 @@ const AddEmergencyContact = () => {
                 placeholder="Name"
                 onChange={handleNameChange}
                 required
+                error={nameError}
               />
               <TextField
                 type="phone"
@@ -94,10 +102,10 @@ const AddEmergencyContact = () => {
                 placeholder="Phone"
                 onChange={handlePhoneChange}
                 required
+                error={phoneError}
               />
             </div>
             <Button className={styles.add} type = "submit">Add</Button>
-            <div className="message">{message ? <p>{message}</p> : null}</div>
           </div>
         </form>
       </main>
