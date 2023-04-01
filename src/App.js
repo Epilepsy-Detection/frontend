@@ -12,6 +12,7 @@ import EditProfile from "./pages/EditProfile/EditProfile";
 import EmergencyContacts from "./pages/EmergencyContacts/EmergencyContacts";
 import AddEmergencyContact from "./pages/EmergencyContacts/AddEmergencyContact";
 import Reports from "./pages/Home/subpages/DoctorDashBoard/Reports/Reports";
+import DeleteEmergencyContact from "./pages/EmergencyContacts/DeleteEmergencyContact";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,10 @@ const App = () => {
             <Route
               path="add-emergency-contact"
               element={<AddEmergencyContact />}
+            />
+            <Route
+              path="delete-emergency-contact"
+              element={<DeleteEmergencyContact />}
             />
           </Route>
         </Route>

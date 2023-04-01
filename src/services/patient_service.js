@@ -76,8 +76,6 @@ const getEmergencyContacts = async (token) => {
 };
 
 const addEmergencyContact = async (name, phone, token) => {
-  console.log(name);
-  console.log(phone);
   const response = await instance.post(
     "/patient/emergencyContact",
     {
@@ -94,6 +92,15 @@ const addEmergencyContact = async (name, phone, token) => {
   return response;
 };
 
+const deleteEmergencyContact = async (id, token) => {
+  const response = await instance.delete(`/patient/emergencyContact/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response;
+};
+
 const patientService = {
   createPatient,
   getDoctorPatients,
@@ -101,6 +108,7 @@ const patientService = {
   getEmergencyContacts,
   addEmergencyContact,
   getProfilePicture,
+  deleteEmergencyContact,
 };
 
 export default patientService;

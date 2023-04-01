@@ -10,6 +10,7 @@ function createUserFromJson(json, email) {
     id: json.profile["_id"],
     userId: json.profile["_userId"],
     profilePicture: json.profile.profilePicture,
+    emergencyContacts: json.profile.emergencyContact,
   };
 }
 
