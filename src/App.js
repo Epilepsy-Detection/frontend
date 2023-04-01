@@ -11,8 +11,7 @@ import CreatePatientModal from "./pages/Home/subpages/DoctorDashBoard/CreatePati
 import EditProfile from "./pages/EditProfile/EditProfile";
 import EmergencyContacts from "./pages/EmergencyContacts/EmergencyContacts";
 import AddEmergencyContact from "./pages/EmergencyContacts/AddEmergencyContact";
-
-
+import Reports from "./pages/Home/subpages/DoctorDashBoard/Reports/Reports";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,10 +43,14 @@ const App = () => {
           <Route index element={<Home />} />
           <Route exact path="upload-EEG" element={<UploadEEG />} />
           <Route path="edit-profile" element={<EditProfile />} />
+          <Route path="reports" element={<Reports />} />
           <Route exact path="emergency-contacts">
             <Route index element={<EmergencyContacts />} />
-            <Route path="add-emergency-contact" element={<AddEmergencyContact />} /> 
-          </Route>   
+            <Route
+              path="add-emergency-contact"
+              element={<AddEmergencyContact />}
+            />
+          </Route>
         </Route>
         <Route path="*" />
       </Routes>

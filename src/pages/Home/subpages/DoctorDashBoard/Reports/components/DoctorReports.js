@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { useTable } from "react-table";
-import styles from "./ReportsTable.module.css";
+import styles from "./DoctorReports.module.css";
 
-const ReportsTable = ({ reports }) => {
+const DoctorReports = ({ reports }) => {
   const columns = useMemo(
     () => [
       {
-        Header: "ID",
+        Header: "Patient ID",
         accessor: "_id",
       },
       {
@@ -61,4 +61,4 @@ const ReportsTable = ({ reports }) => {
   );
 };
 
-export default ReportsTable;
+export default DoctorReports;
