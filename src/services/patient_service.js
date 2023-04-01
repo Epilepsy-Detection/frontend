@@ -63,8 +63,6 @@ const changeProfilePicture = async (token, picture) => {
   };
 
   const addEmergencyContact = async (name, phone, token) => {
-    console.log(name);
-    console.log(phone);
     const response = await instance.post("/patient/emergencyContact", {
       "name": name,
       "phone": phone
@@ -77,13 +75,24 @@ const changeProfilePicture = async (token, picture) => {
     return response;
   };
 
+  const deleteEmergencyContact = async (id, token) => {
+    const response = await instance.delete(`/patient/emergencyContact/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  };
+
+  
+
 const patientService = {
   createPatient,
   getDoctorPatients,
   changeProfilePicture,
   getEmergencyContacts,
-  addEmergencyContact
-
+  addEmergencyContact,
+  deleteEmergencyContact
 };
 
 export default patientService;
