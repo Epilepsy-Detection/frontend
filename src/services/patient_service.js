@@ -53,37 +53,54 @@ const changeProfilePicture = async (token, picture) => {
   }
 };
 
-  const getEmergencyContacts = async (token) => {
-    const response = await instance.get(`/profile`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data.profile.emergencyContact;
-  };
+const getProfilePicture = async (token, route) => {
+  const response = await instance.get(route, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (response.status === 204 || response.status === 200) {
+    return response.data;
+  } else {
+    throw new Error(response.error.message);
+  }
+};
 
-  const addEmergencyContact = async (name, phone, token) => {
-    console.log(name);
-    console.log(phone);
-    const response = await instance.post("/patient/emergencyContact", {
-      "name": name,
-      "phone": phone
-    },{
+const getEmergencyContacts = async (token) => {
+  const response = await instance.get(`/profile`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data.profile.emergencyContact;
+};
+
+const addEmergencyContact = async (name, phone, token) => {
+  console.log(name);
+  console.log(phone);
+  const response = await instance.post(
+    "/patient/emergencyContact",
+    {
+      name: name,
+      phone: phone,
+    },
+    {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
-    console.log(response.status);
-    return response;
-  };
+    }
+  );
+  console.log(response.status);
+  return response;
+};
 
 const patientService = {
   createPatient,
   getDoctorPatients,
   changeProfilePicture,
   getEmergencyContacts,
-  addEmergencyContact
-
+  addEmergencyContact,
+  getProfilePicture,
 };
 
 export default patientService;
