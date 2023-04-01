@@ -25,6 +25,9 @@ const DoctorHeader = ({ logoutHandler, enterCreatePatientModal }) => {
       </h1>
       <ul>
         <li>
+          <Link to="/home/reports">Reports</Link>
+        </li>
+        <li>
           <button onClick={enterCreatePatientModal}>Create Patient</button>
         </li>
         <li>

@@ -6,11 +6,13 @@ import logo from "../../assets/logo.png";
 import { BsPersonFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useGetProfilePicture from "../../hooks/useGetProfilePicture";
 
 const PatientHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
+  const { profilePicture, error } = useGetProfilePicture();
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -32,7 +34,11 @@ const PatientHeader = () => {
         <h1>Hello, {user.firstName}</h1>
       </div>
       <div className={styles.profile} onClick={showDropdown}>
-        <BsPersonFill size={40} color="#fea8db" />
+        {profilePicture && !error ? (
+          <img src={profilePicture} alt="Profile"></img>
+        ) : (
+          <BsPersonFill size={40} color="#fea8db" />
+        )}
       </div>
       <div className={styles.dropdown + " " + styles.hide}>
         <Link to="/home/edit-profile">Edit Profile</Link>

@@ -53,38 +53,53 @@ const changeProfilePicture = async (token, picture) => {
   }
 };
 
-  const getEmergencyContacts = async (token) => {
-    const response = await instance.get(`/profile`, {
+const getProfilePicture = async (token, route) => {
+  const response = await instance.get(route, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (response.status === 204 || response.status === 200) {
+    return response.data;
+  } else {
+    throw new Error(response.error.message);
+  }
+};
+
+const getEmergencyContacts = async (token) => {
+  const response = await instance.get(`/profile`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data.profile.emergencyContact;
+};
+
+const addEmergencyContact = async (name, phone, token) => {
+  const response = await instance.post(
+    "/patient/emergencyContact",
+    {
+      name: name,
+      phone: phone,
+    },
+    {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
-    return response.data.profile.emergencyContact;
-  };
+    }
+  );
+  console.log(response.status);
+  return response;
+};
 
-  const addEmergencyContact = async (name, phone, token) => {
-    const response = await instance.post("/patient/emergencyContact", {
-      "name": name,
-      "phone": phone
-    },{
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(response.status);
-    return response;
-  };
-
-  const deleteEmergencyContact = async (id, token) => {
-    const response = await instance.delete(`/patient/emergencyContact/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response;
-  };
-
-  
+const deleteEmergencyContact = async (id, token) => {
+  const response = await instance.delete(`/patient/emergencyContact/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response;
+};
 
 const patientService = {
   createPatient,
@@ -92,7 +107,8 @@ const patientService = {
   changeProfilePicture,
   getEmergencyContacts,
   addEmergencyContact,
-  deleteEmergencyContact
+  getProfilePicture,
+  deleteEmergencyContact,
 };
 
 export default patientService;
