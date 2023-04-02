@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile, faRotate } from "@fortawesome/free-solid-svg-icons";
 import useEEGResults from "./hooks/use-eeg-results";
 import { labelsMap } from "../../utils/results_utils";
+import DoctorHeader from "../../components/DoctorHeader/DoctorHeader";
 
 const UploadEEG = () => {
   const user = useSelector((state) => state.auth.user);
@@ -59,6 +60,7 @@ const UploadEEG = () => {
 
   return (
     <>
+      <DoctorHeader />
       {!results && (
         <form onSubmit={onSubmit} className={styles.form}>
           {loading && <div>Loading...</div>}
