@@ -36,6 +36,9 @@ const DoctorHeader = () => {
             <Link to="/home/reports">Reports</Link>
           </li>
           <li>
+            <Link to="/home/upload-eeg">Upload EEG</Link>
+          </li>
+          <li>
             <button onClick={enterCreatePatientModal}>Create Patient</button>
           </li>
           <li>
