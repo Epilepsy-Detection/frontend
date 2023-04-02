@@ -9,6 +9,7 @@ const ActivePatients = () => {
     <div className={styles["patients-dropdown"]}>
       <p>Select Active Patient:</p>
       <Dropdown
+        className={styles["dropdown"]}
         options={options}
         value={defaultOption}
         placeholder="Select an option"

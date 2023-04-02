@@ -17,9 +17,9 @@ import DoctorHeader from "../../../../components/DoctorHeader/DoctorHeader";
 
 const DoctorDashboard = () => {
   const user = useSelector((state) => state.auth.user);
-  const [setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
   const [data, setData] = useState([]);
-  const [setResized] = useState(false);
+  const [resized, setResized] = useState(false);
 
   useEffect(() => {
     const socket = io(process.env.REACT_APP_SOCKET_URL, {
@@ -83,7 +83,7 @@ const DoctorDashboard = () => {
       socket.off("connect_timeout");
       socket.off("new-patient-message");
     };
-  }, [setIsConnected, setResized, user.token]);
+  }, [user.token]);
 
   return (
     <div className="background">
@@ -92,7 +92,7 @@ const DoctorDashboard = () => {
         <h1 className={styles["welcome-text"]}>Welcome Dr. {user.firstName}</h1>
         <ActivePatients />
         <LineChart
-          width={window.innerWidth - 100}
+          width={window.innerWidth - 160}
           height={400}
           data={data}
           margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
