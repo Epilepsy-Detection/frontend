@@ -13,6 +13,7 @@ import {
   YAxis,
 } from "recharts";
 import ActivePatients from "./ActivePatients/ActivePatients";
+import DoctorHeader from "../../../../components/DoctorHeader/DoctorHeader";
 
 const DoctorDashboard = () => {
   const user = useSelector((state) => state.auth.user);
@@ -86,6 +87,7 @@ const DoctorDashboard = () => {
 
   return (
     <>
+      <DoctorHeader />
       <main className={styles.main}>
         <h1 className={styles["welcome-text"]}>Welcome Dr. {user.firstName}</h1>
         <ActivePatients />
