@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 // import "./styles.css";
 import Select from "react-select";
-import patientStyles from "../Home/subpages/PatientDashboard/PatientDashboard.module.css";
 import PatientHeader from "../../components/PatientHeader/PatientHeader";
 import { hideDropdown } from "../../utils/ui_functions";
 import { useSelector } from "react-redux";
@@ -12,7 +11,7 @@ import useEmergencyContacts from "./Hooks/use-emergency-contacts";
 
 const DeleteEmergencyContact = () => {
   const user = useSelector((state) => state.auth.user);
-  const { contacts, loading, error: fetchError } = useEmergencyContacts(user);
+  const { contacts } = useEmergencyContacts(user);
   const options = contacts.map((contact) => {
     return { value: contact.id, label: contact.name };
   });

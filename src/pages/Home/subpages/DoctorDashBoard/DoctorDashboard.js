@@ -17,9 +17,9 @@ import DoctorHeader from "../../../../components/DoctorHeader/DoctorHeader";
 
 const DoctorDashboard = () => {
   const user = useSelector((state) => state.auth.user);
-  const [isConnected, setIsConnected] = useState(false);
+  const [setIsConnected] = useState(false);
   const [data, setData] = useState([]);
-  const [resized, setResized] = useState(false);
+  const [setResized] = useState(false);
 
   useEffect(() => {
     const socket = io(process.env.REACT_APP_SOCKET_URL, {
@@ -83,7 +83,7 @@ const DoctorDashboard = () => {
       socket.off("connect_timeout");
       socket.off("new-patient-message");
     };
-  }, []);
+  }, [setIsConnected, setResized, user.token]);
 
   return (
     <div className="background">

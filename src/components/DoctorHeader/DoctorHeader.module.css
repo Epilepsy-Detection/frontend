@@ -1,13 +1,17 @@
 .header {
-  background-color: rgb(100, 96, 222);
-  margin: 0;
-  padding: 0;
-  color: rgb(255, 255, 255);
+  background-color: transparent;
+  padding: 0 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 4rem;
+  height: 80px;
+  border-bottom: 1px solid #8a73ff;
+}
+
+.dashboard {
+  display: flex;
+  align-items: center;
 }
 
 .header h1 {
@@ -19,33 +23,106 @@
 
 .header h1 a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: #6e5cdc;
+  font-weight: 700;
+  font-size: 32px;
+  font-family: "Nunito";
 }
 
-.header ul {
+.dropdown {
   display: flex;
   justify-content: space-around;
   align-items: center;
   list-style: none;
 }
 
-.header ul li {
+.dropdown li {
   margin: 0 0.5rem;
   padding-top: 1rem;
 }
 
-.header ul li a,
-.header ul li button {
+.dropdown li button {
   margin: 0;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-size: 1rem;
-  font-weight: 400;
-  background-color: transparent;
-  border: none;
+  padding: 0;
 }
 
-.header ul li a:hover,
-.header ul li button:hover {
+.dropdown li a,
+.dropdown li button {
+  margin: 0;
+  text-decoration: none;
+  color: #6e5cdc;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: transparent;
+  font-weight: 700;
+  border: none;
+  font-family: "Nunito";
+}
+
+.dropdown li a:hover,
+.dropdown li button:hover {
   text-decoration: underline;
+}
+
+.menu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 2px;
+  }
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  .menu {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #6e5cdc;
+    padding-right: 20px;
+  }
+
+  .dropdown {
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #d6d0ff;
+    cursor: pointer;
+    font-size: 16px;
+    top: 70px;
+    right: 20px;
+    z-index: 1;
+    padding: 0;
+    animation: slide 0.5s ease-in-out, fade 0.5s ease-in-out;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .dropdown li {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #d6d0ff;
+    padding: 10px 10px;
+  }
+
+  .hide {
+    display: none;
+  }
 }
