@@ -3,7 +3,6 @@ import Button from "../../components/Button/Button";
 import PatientHeader from "../../components/PatientHeader/PatientHeader";
 import TextField from "../../components/TextField/TextField";
 import { hideDropdown } from "../../utils/ui_functions";
-import patientStyles from "../Home/subpages/PatientDashboard/PatientDashboard.module.css";
 import styles from "./EditProfile.module.css";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
@@ -41,9 +40,9 @@ const EditProfile = () => {
 
   const user = useSelector((state) => state.auth.user);
   return (
-    <div className={patientStyles.background}>
+    <div className="background">
       <PatientHeader />
-      <main className={patientStyles["main-bg"]} onClick={hideDropdown}>
+      <main className="main-bg" onClick={hideDropdown}>
         <h1>Edit Profile</h1>
         <form
           className={styles["edit-profile-form"]}

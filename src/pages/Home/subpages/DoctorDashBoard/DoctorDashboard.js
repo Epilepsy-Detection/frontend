@@ -86,9 +86,9 @@ const DoctorDashboard = () => {
   }, []);
 
   return (
-    <>
+    <div className="background">
       <DoctorHeader />
-      <main className={styles.main}>
+      <main className="main-bg">
         <h1 className={styles["welcome-text"]}>Welcome Dr. {user.firstName}</h1>
         <ActivePatients />
         <LineChart
@@ -110,7 +110,7 @@ const DoctorDashboard = () => {
           />
         </LineChart>
       </main>
-    </>
+    </div>
   );
 };
 

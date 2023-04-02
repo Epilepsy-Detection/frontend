@@ -10,15 +10,12 @@ import styles from "./deleteEmergencyContact.module.css";
 import patientService from "../../services/patient_service";
 import useEmergencyContacts from "./Hooks/use-emergency-contacts";
 
-
-
-const DeleteEmergencyContact = ()=> {
-
+const DeleteEmergencyContact = () => {
   const user = useSelector((state) => state.auth.user);
   const { contacts, loading, error: fetchError } = useEmergencyContacts(user);
   const options = contacts.map((contact) => {
     return { value: contact.id, label: contact.name };
-    });  
+  });
 
   const [selectedOption, setSelectedOption] = useState([]); //add initial state
 
@@ -37,14 +34,17 @@ const DeleteEmergencyContact = ()=> {
       return;
     }
     if (selectedOption) {
-      const res = await patientService.deleteEmergencyContact(selectedOption.value, user.token);
+      const res = await patientService.deleteEmergencyContact(
+        selectedOption.value,
+        user.token
+      );
       console.log(res);
       if (res.status === 200) {
         setSelectedOption([]);
         alert("Contact deleted successfully");
       }
     }
-    };
+  };
 
   const filterOptions = (candidate, input) => {
     if (input) {
@@ -63,25 +63,26 @@ const DeleteEmergencyContact = ()=> {
   };
 
   return (
-
-    <div className={patientStyles.background}>
-    <PatientHeader />
-      <main className={patientStyles["main-bg"]} onClick={hideDropdown}>
+    <div className="background">
+      <PatientHeader />
+      <main className="main-bg" onClick={hideDropdown}>
         <h1>Delete Emergency Contact</h1>
         <div className={styles["delete-contact"]}>
           <Select
-              value={selectedOption}
-              onChange={handleChange}
-              options={options}
-              hideSelectedOptions={false}
-              isSearchable
-              filterOption={filterOptions}
+            value={selectedOption}
+            onChange={handleChange}
+            options={options}
+            hideSelectedOptions={false}
+            isSearchable
+            filterOption={filterOptions}
           />
-          <DeleteButton className={styles.add} onClick={handleDelete} >Delete</DeleteButton>
+          <DeleteButton className={styles.add} onClick={handleDelete}>
+            Delete
+          </DeleteButton>
         </div>
-        </main>
+      </main>
     </div>
   );
-}
+};
 
 export default DeleteEmergencyContact;
