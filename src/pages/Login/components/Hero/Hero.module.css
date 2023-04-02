@@ -6,8 +6,7 @@
   flex-direction: column;
   background-color: rgb(240, 224, 255);
 }
-
-.hero img {
+.hero-img {
   max-width: 30vw;
   align-self: center;
   display: block;
