@@ -6,8 +6,8 @@ const DoctorReports = ({ reports }) => {
   const columns = useMemo(
     () => [
       {
-        Header: "Patient ID",
-        accessor: "_id",
+        Header: "Patient Name",
+        accessor: "_patientId.name",
       },
       {
         Header: "Prediction",

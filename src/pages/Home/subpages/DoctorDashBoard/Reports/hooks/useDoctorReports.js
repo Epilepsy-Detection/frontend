@@ -13,6 +13,12 @@ const useDoctorReports = () => {
     reportService
       .getDoctorReports(token)
       .then((response) => {
+        response.forEach((report) => {
+          report._patientId = {
+            name:
+              report._patientId.firstName + " " + report._patientId.lastName,
+          };
+        });
         setReport(response);
         setLoading(false);
       })
