@@ -1,13 +1,22 @@
 import { useMemo } from "react";
 import { useTable } from "react-table";
 import styles from "./DoctorReports.module.css";
+import { Link } from "react-router-dom";
 
 const DoctorReports = ({ reports }) => {
   const columns = useMemo(
     () => [
       {
         Header: "Patient Name",
-        accessor: "_patientId.name",
+        accessor: "_patientId",
+        Cell: ({ value }) => (
+          <Link
+            to={"/home/reports/" + value["_id"]}
+            className={styles["patient-name"]}
+          >
+            {value.name}
+          </Link>
+        ),
       },
       {
         Header: "Prediction",

@@ -17,6 +17,7 @@ const useDoctorReports = () => {
           report._patientId = {
             name:
               report._patientId.firstName + " " + report._patientId.lastName,
+            _id: report._patientId._id,
           };
         });
         setReport(response);

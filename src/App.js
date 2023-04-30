@@ -8,6 +8,7 @@ import EmergencyContacts from "./pages/EmergencyContacts/EmergencyContacts";
 import AddEmergencyContact from "./pages/EmergencyContacts/AddEmergencyContact";
 import Reports from "./pages/Home/subpages/DoctorDashBoard/Reports/Reports";
 import DeleteEmergencyContact from "./pages/EmergencyContacts/DeleteEmergencyContact";
+import PatientProfile from "./pages/PatientProfile/PatientProfile";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route exact path="upload-EEG" element={<UploadEEG />} />
           <Route path="edit-profile" element={<EditProfile />} />
           <Route path="reports" element={<Reports />} />
+          <Route path="reports/:patientId" element={<PatientProfile />} />
           <Route exact path="emergency-contacts">
             <Route index element={<EmergencyContacts />} />
             <Route
