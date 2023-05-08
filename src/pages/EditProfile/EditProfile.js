@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 const EditProfile = () => {
   const fileInput = useRef(null);
   const { changeIcon, changePassword } = useEditProfile();
+  const user = useSelector((state) => state.auth.user);
 
   const formSchema = Yup.object().shape({
     oldPassword: Yup.string().required("Old password is required"),
@@ -38,7 +39,6 @@ const EditProfile = () => {
     changePassword(data.oldPassword, data.newPassword);
   };
 
-  const user = useSelector((state) => state.auth.user);
   return (
     <div className="background">
       <PatientHeader />
@@ -50,7 +50,11 @@ const EditProfile = () => {
         >
           <div className={styles["change-pfp"]}>
             <div className={styles.pfp}>
-              <BsPersonFill size={100} />
+              {user.profilePicture ? (
+                <img src={user.profilePicture} alt="profile" />
+              ) : (
+                <BsPersonFill size={100} />
+              )}
             </div>
             <input
               style={{ display: "none" }}
