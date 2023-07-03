@@ -15,7 +15,6 @@
 
 .pfp {
   border: 2px solid;
-  cursor: pointer;
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -23,6 +22,12 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 2vh;
+}
+
+.pfp img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
 }
 
 .change-pfp-btn {

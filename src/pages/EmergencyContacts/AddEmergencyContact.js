@@ -2,7 +2,6 @@ import Button from "../../components/Button/Button";
 import PatientHeader from "../../components/PatientHeader/PatientHeader";
 import TextField from "../../components/TextField/TextField";
 import { hideDropdown } from "../../utils/ui_functions";
-import patientStyles from "../Home/subpages/PatientDashboard/PatientDashboard.module.css";
 import styles from "./AddEmergencyContact.module.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -19,12 +18,11 @@ const AddEmergencyContact = () => {
   const [phoneError, setPhoneError] = useState("");
   const formRef = useRef(null);
 
-
   const validateInput = (value) => {
     const regex = /^[a-zA-Z\s]*$/;
     return regex.test(value);
   };
-  const validatePhone= (inputPhone) => {
+  const validatePhone = (inputPhone) => {
     const phonePattern = /^(\+|\d)[0-9]{7,16}$/;
     return phonePattern.test(inputPhone);
   };
@@ -37,8 +35,6 @@ const AddEmergencyContact = () => {
     setPhoneIsValid(validatePhone(event.target.value));
   };
 
-
-
   let handleSubmit = async (e) => {
     console.log(name);
     console.log(phone);
@@ -49,17 +45,20 @@ const AddEmergencyContact = () => {
         setPhoneError("phone is required");
         return;
       }
-      if(!nameIsValid || name.length > 50){
+      if (!nameIsValid || name.length > 50) {
         setNameError("Please enter a valid name");
         return;
       }
-      if(!phoneIsValid){
+      if (!phoneIsValid) {
         setPhoneError("Please enter a valid phone number");
         return;
       }
-      
 
-      const res = await patientService.addEmergencyContact(name, phone,user.token);
+      const res = await patientService.addEmergencyContact(
+        name,
+        phone,
+        user.token
+      );
       console.log(res);
       if (res.status === 200) {
         alert("Contact added successfully");
@@ -68,24 +67,27 @@ const AddEmergencyContact = () => {
         setPhoneError("");
         setName("");
         setPhone("");
-      }
-      else{
+      } else {
         alert("Something went wrong");
       }
     } catch (err) {
       console.log(err);
-      if (err.response.status === 400){
+      if (err.response.status === 400) {
         alert("You are allowed to only create 2 emergency contacts");
       }
     }
   };
 
   return (
-    <div className={patientStyles.background}>
+    <div className="background">
       <PatientHeader />
-      <main className={patientStyles["main-bg"]} onClick={hideDropdown}>
+      <main className="main-bg" onClick={hideDropdown}>
         <h1>Add Emergency Contact</h1>
-        <form className={styles["add-emergency-contact-form "]} onSubmit={handleSubmit} ref={formRef}>
+        <form
+          className={styles["add-emergency-contact-form "]}
+          onSubmit={handleSubmit}
+          ref={formRef}
+        >
           <div className={styles["contact-details"]}>
             <div className={styles.name}>
               <TextField
@@ -105,7 +107,9 @@ const AddEmergencyContact = () => {
                 error={phoneError}
               />
             </div>
-            <Button className={styles.add} type = "submit">Add</Button>
+            <Button className={styles.add} type="submit">
+              Add
+            </Button>
           </div>
         </form>
       </main>

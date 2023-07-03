@@ -1,30 +1,17 @@
 import Dropdown from "react-dropdown";
-import Button from "../../../../../components/Button/Button";
 import styles from "./ActivePatients.module.css";
-import { useNavigate } from "react-router-dom";
 
-const ActivePatients = () => {
-  const navigate = useNavigate();
-  const options = ["one", "two", "three"];
-  const defaultOption = options[0];
-
-  const handleUploadFile = () => {
-    navigate("/home/upload-eeg");
-  };
+const ActivePatients = ({ activePatients, associatePatient }) => {
   return (
     <div className={styles["patients-dropdown"]}>
       <p>Select Active Patient:</p>
       <Dropdown
-        options={options}
-        value={defaultOption}
+        className={styles["dropdown"]}
+        options={activePatients}
+        value="Select an option"
         placeholder="Select an option"
+        onChange={(e) => associatePatient(e.value)}
       />
-      <Button
-        onClick={handleUploadFile}
-        className={styles["upload-file-button"]}
-      >
-        Upload EEG File
-      </Button>
     </div>
   );
 };

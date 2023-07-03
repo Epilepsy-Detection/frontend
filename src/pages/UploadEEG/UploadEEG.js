@@ -59,62 +59,64 @@ const UploadEEG = () => {
   };
 
   return (
-    <>
+    <div className="background">
       <DoctorHeader />
-      {!results && (
-        <form onSubmit={onSubmit} className={styles.form}>
-          {loading && <div>Loading...</div>}
-          {fetchError && <div className={styles.error}>{fetchError}</div>}
-          <Dropdown
-            className={styles.dropdown}
-            options={patients}
-            onChange={patientChangeHandler}
-            placeholder="Select a patient"
-            value={selectedPatient}
-          />
-          <label htmlFor="inputTag">
-            Select File <br />
-            <FontAwesomeIcon className={styles["file-icon"]} icon={faFile} />
-            <input
-              id="inputTag"
-              className={styles["file-input"]}
-              type="file"
-              onChange={fileChangeHandler}
+      <main className="main-bg">
+        {!results && (
+          <form onSubmit={onSubmit} className={styles.form}>
+            {loading && <div>Loading...</div>}
+            {fetchError && <div className={styles.error}>{fetchError}</div>}
+            <Dropdown
+              className={styles.dropdown}
+              options={patients}
+              onChange={patientChangeHandler}
+              placeholder="Select a patient"
+              value={selectedPatient}
             />
-          </label>
-          <div>
-            {error && <div className={styles.error}>{error}</div>}
-            {file && <div>{file.name}</div>}
-          </div>
-          <Button type="submit">Upload</Button>
-        </form>
-      )}
-      {resultsLoading && <div className={styles.loading}>Loading...</div>}
-      {resultsError && <div className={styles.error}>{resultsError}</div>}
-      {results && (
-        <div className={styles.results}>
-          <h3>Results</h3>
-          <div>
+            <label htmlFor="inputTag">
+              Select File <br />
+              <FontAwesomeIcon className={styles["file-icon"]} icon={faFile} />
+              <input
+                id="inputTag"
+                className={styles["file-input"]}
+                type="file"
+                onChange={fileChangeHandler}
+              />
+            </label>
             <div>
-              <span className={styles.label}>Label: </span>
-              <span>
-                {results.prediction.label +
-                  ` (${labelsMap[results.prediction.label]})`}
-              </span>
+              {error && <div className={styles.error}>{error}</div>}
+              {file && <div>{file.name}</div>}
             </div>
+            <Button type="submit">Upload</Button>
+          </form>
+        )}
+        {resultsLoading && <div className={styles.loading}>Loading...</div>}
+        {resultsError && <div className={styles.error}>{resultsError}</div>}
+        {results && (
+          <div className={styles.results}>
+            <h3>Results</h3>
             <div>
-              <span className={styles.label}>Confidence: </span>
-              <span>
-                {(results.prediction.confidence * 100).toFixed(2) + "%"}
-              </span>
+              <div>
+                <span className={styles.label}>Label: </span>
+                <span>
+                  {results.prediction.label +
+                    ` (${labelsMap[results.prediction.label]})`}
+                </span>
+              </div>
+              <div>
+                <span className={styles.label}>Confidence: </span>
+                <span>
+                  {(results.prediction.confidence * 100).toFixed(2) + "%"}
+                </span>
+              </div>
             </div>
+            <button onClick={clearResults} className={styles["retry-button"]}>
+              Retry <FontAwesomeIcon icon={faRotate} />
+            </button>
           </div>
-          <button onClick={clearResults} className={styles["retry-button"]}>
-            Retry <FontAwesomeIcon icon={faRotate} />
-          </button>
-        </div>
-      )}
-    </>
+        )}
+      </main>
+    </div>
   );
 };
 

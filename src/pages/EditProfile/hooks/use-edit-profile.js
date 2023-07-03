@@ -2,17 +2,20 @@ import { useState } from "react";
 import patientService from "../../../services/patient_service";
 import authService from "../../../services/auth_service";
 import { useSelector } from "react-redux";
+import { updateProfilePicture } from "../../../slices/auth";
+import { useDispatch } from "react-redux";
 
 function useEditProfile() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const token = useSelector((state) => state.auth.user.token);
+  const dispatch = useDispatch();
 
   async function changeIcon(newPicture) {
     setIsLoading(true);
     setError(null);
     try {
-      await patientService.changeProfilePicture(token, newPicture);
+      dispatch(updateProfilePicture({ token, picture: newPicture }));
       setIsLoading(false);
 
       alert("Profile picture changed successfully");

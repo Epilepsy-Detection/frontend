@@ -1,7 +1,12 @@
 .patients-dropdown {
   display: flex;
-  width: 90%;
-  justify-content: space-between;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.patients-dropdown p {
+  margin: 0 1em;
 }
 
 .upload-file-button {

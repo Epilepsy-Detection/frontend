@@ -28,3 +28,14 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
+.patient-name {
+  text-decoration: none;
+  color: #000;
+}
+
+.patient-name:hover {
+  color: #8a73ff;
+  text-decoration: underline;
+  cursor: pointer;
+}

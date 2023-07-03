@@ -3,7 +3,6 @@ import Button from "../../components/Button/Button";
 import PatientHeader from "../../components/PatientHeader/PatientHeader";
 import TextField from "../../components/TextField/TextField";
 import { hideDropdown } from "../../utils/ui_functions";
-import patientStyles from "../Home/subpages/PatientDashboard/PatientDashboard.module.css";
 import styles from "./EditProfile.module.css";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
@@ -15,6 +14,7 @@ import { useForm } from "react-hook-form";
 const EditProfile = () => {
   const fileInput = useRef(null);
   const { changeIcon, changePassword } = useEditProfile();
+  const user = useSelector((state) => state.auth.user);
 
   const formSchema = Yup.object().shape({
     oldPassword: Yup.string().required("Old password is required"),
@@ -39,11 +39,10 @@ const EditProfile = () => {
     changePassword(data.oldPassword, data.newPassword);
   };
 
-  const user = useSelector((state) => state.auth.user);
   return (
-    <div className={patientStyles.background}>
+    <div className="background">
       <PatientHeader />
-      <main className={patientStyles["main-bg"]} onClick={hideDropdown}>
+      <main className="main-bg" onClick={hideDropdown}>
         <h1>Edit Profile</h1>
         <form
           className={styles["edit-profile-form"]}
@@ -51,7 +50,11 @@ const EditProfile = () => {
         >
           <div className={styles["change-pfp"]}>
             <div className={styles.pfp}>
-              <BsPersonFill size={100} />
+              {user.profilePicture ? (
+                <img src={user.profilePicture} alt="profile" />
+              ) : (
+                <BsPersonFill size={100} />
+              )}
             </div>
             <input
               style={{ display: "none" }}

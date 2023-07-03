@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./DoctorHeader.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CreatePatientModal from "../../pages/Home/subpages/DoctorDashBoard/CreatePatientModal/CreatePatientModal";
 import { useDispatch } from "react-redux";
 import { logout } from "../../slices/auth";
+import logo from "../../assets/logo.png";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DoctorHeader = () => {
   const dispatch = useDispatch();
@@ -23,17 +26,33 @@ const DoctorHeader = () => {
     setShowCreatePatientModal(false);
   };
 
+  const toggleDropdown = () => {
+    const dropdown = document.querySelector(`.${styles.dropdown}`);
+    dropdown.classList.toggle(styles["hide"]);
+  };
+
   if (user && user.role !== "doctor") return null;
 
   return (
     <>
       <header className={styles.header}>
-        <h1>
-          <Link to="/home">Doctor Dashboard</Link>
-        </h1>
-        <ul>
+        <div className={styles.dashboard}>
+          <img alt="Logo" src={logo}></img>
+          <h1>
+            <Link to="/home">Doctor Dashboard</Link>
+          </h1>
+        </div>
+        <FontAwesomeIcon
+          className={styles.menu}
+          icon={faEllipsisVertical}
+          onClick={toggleDropdown}
+        />
+        <ul className={styles.dropdown + " " + styles.hide}>
           <li>
             <Link to="/home/reports">Reports</Link>
+          </li>
+          <li>
+            <Link to="/home/upload-eeg">Upload EEG</Link>
           </li>
           <li>
             <button onClick={enterCreatePatientModal}>Create Patient</button>

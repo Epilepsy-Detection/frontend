@@ -8,9 +8,9 @@ const PatientDashboard = () => {
   const { report, loading, error } = useGetReport();
 
   return (
-    <div className={styles.background}>
+    <div className="background">
       <PatientHeader />
-      <main className={styles["main-bg"]} onClick={hideDropdown}>
+      <main className="main-bg" onClick={hideDropdown}>
         <h1>All Reports</h1>
         <h4>
           Total Reports:{" "}

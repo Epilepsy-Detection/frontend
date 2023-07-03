@@ -53,19 +53,6 @@ const changeProfilePicture = async (token, picture) => {
   }
 };
 
-const getProfilePicture = async (token, route) => {
-  const response = await instance.get(route, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  if (response.status === 204 || response.status === 200) {
-    return response.data;
-  } else {
-    throw new Error(response.error.message);
-  }
-};
-
 const getEmergencyContacts = async (token) => {
   const response = await instance.get(`/profile`, {
     headers: {
@@ -107,7 +94,6 @@ const patientService = {
   changeProfilePicture,
   getEmergencyContacts,
   addEmergencyContact,
-  getProfilePicture,
   deleteEmergencyContact,
 };
 

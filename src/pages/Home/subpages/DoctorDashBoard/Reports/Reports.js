@@ -6,9 +6,9 @@ import DoctorHeader from "../../../../../components/DoctorHeader/DoctorHeader";
 const Reports = () => {
   const { report, loading, error } = useDoctorReports();
   return (
-    <>
+    <div className="background">
       <DoctorHeader />
-      <main className={styles["main-bg"]}>
+      <main className="main-bg">
         <h1>All Reports</h1>
         <h4>
           Total Reports:{" "}
@@ -20,7 +20,7 @@ const Reports = () => {
         {error && <p>{error}</p>}
         {report && <DoctorReports reports={report} />}
       </main>
-    </>
+    </div>
   );
 };
 

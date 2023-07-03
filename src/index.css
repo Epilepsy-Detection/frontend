@@ -2,9 +2,9 @@
 
 body {
   margin: 0;
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif; /* TODO: USE POPPINS */
+  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -12,4 +12,25 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.background {
+  background: #f2efff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.main-bg {
+  width: 95vw;
+  height: 85vh;
+  margin: 20px auto;
+  background: #fdfdfd;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.25),
+    inset 2px -2px 5px rgba(255, 255, 255, 0.2);
+  border-radius: 46px;
+  font-family: "Nunito";
+  padding: 20px;
 }
